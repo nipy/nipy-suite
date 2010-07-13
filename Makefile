@@ -56,16 +56,20 @@ test: all-test
 
 # To oversee repositories
 status:
-	: I: Current repository
+	@echo I: Current repository
 	git status
-	: I: Submodules
+	@echo I: Submodules
 	git submodule status
 
 describe:
-	: I: Main module version:
+	@echo I: Main module version:
 	@git describe
-	: I: Dependent modules
+	@echo I: Dependent modules
 	@git submodule foreach 'git describe || :'
+
+reset-to-suite:
+	@echo "I: Resetting all submodules to suite's versions"
+	@git submodule foreach 'git checkout master && git reset --hard $$sha1'
 
 # Invoke ipython in current "environment"
 ipython:
