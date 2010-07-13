@@ -1,0 +1,15 @@
+[submodule "nibabel"]
+	path = nibabel
+	url = git://github.com/hanke/nibabel.git
+[submodule "nipy"]
+	path = nipy
+	url = git://github.com/nipy/nipy.git
+[submodule "nitime"]
+	path = nitime
+	url = git://github.com/fperez/nitime.git
+[submodule "dipy"]
+	path = dipy
+	url = git://github.com/Garyfallidis/dipy.git
+[submodule "xipy"]
+	path = xipy
+	url = git://github.com/miketrumpis/xipy.git

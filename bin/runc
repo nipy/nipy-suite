@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# Little helper which spits out output only if there was an error
+# while running the desired command.  First argument taken as the
+# message prefix
+
+echo -n "$1"
+shift
+
+if [ -z "$DRY" ]
+then
+    tempfile=`mktemp --tmpdir ni-py.XXXXXX`
+    "$@" >tempfile 2>&1 \
+    	&& { echo -e "\tok"; rm -f $tempfile; } \
+    	|| { echo -e "\tfailed. See $tempfile"; }
+    rm -f tempfile
+else
+    echo -e "\tDRY: $*"
+fi
+
