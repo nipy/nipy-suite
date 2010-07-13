@@ -10,8 +10,7 @@ export DRY VERBOSE
 PYTHONPATH := $(PYTHONPATH):$(INSTALLDIR)/lib/python2.6/site-packages/
 export PYTHONPATH
 
-all:
-	@echo $(PROJECTS);
+all: install test
 
 all-%:
 	@echo I: $* all subprojects
@@ -33,13 +32,13 @@ test-%:
 	@$(RUN) "Testing $*" nosetests -q $*
 
 # Shortcuts
-dist-clean: all-clean
+clean: all-clean
 	# nitime and xipy still have build
 	rm -rf $(foreach prj, $(PROJECTS), $(prj)/build)
 	# DiPy doesn't remove generated .c files upon clean
 	find dipy -iname *.c -delete
 
-clean: dist-clean
+dist-clean: clean
 	rm -rf install
 
 build: all-build
@@ -56,6 +55,8 @@ status:
 # Invoke ipython in current "environment"
 ipython:
 	ipython
+shell:
+	$(SHELL)
 
 # Initial creation
 init:
