@@ -10,6 +10,13 @@ export DRY VERBOSE
 PYTHONPATH := $(PYTHONPATH):$(INSTALLDIR)/lib/python2.6/site-packages/
 export PYTHONPATH
 
+
+ifndef VERBOSE
+NOSEARGS=-q
+else
+NOSEARGS=
+endif
+
 all: install test
 
 all-%:
@@ -30,7 +37,7 @@ test-%:
 # To make sure things up-to-date
 	@[ -z $$VERBOSE ] ||  echo "PYTHONPATH=$$PYTHONPATH"
 	@$(RUN) "Assuring uptodate install of $*" $(MAKE) install-$*
-	@cd $(INSTALLDIR) && $(RUN) "Testing $*" nosetests -q $*
+	@cd $(INSTALLDIR) && $(RUN) "Testing $*" nosetests $(NOSEARGS) $*
 
 # Dependencies:
 install-nipy: install-nibabel

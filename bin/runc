@@ -11,13 +11,18 @@ shift
 
 if [ -z "$DRY" ]
 then
-    tempfile=`mktemp -q --tmpdir ni-py.$name.$(date +"%y%m%d%H%M").XXXX`
-    "$@" >$tempfile 2>&1 \
-    	&& { echo -e "\tdone"; rm -f $tempfile; } \
-    	|| { echo -en "\tfailed. ";
-			 [ -z "$VERBOSE" ] \
-				 && echo "See $tempfile" \
-				 || { echo "Details from $tempfile:"; cat $tempfile; }; }
+    if [ -z "$VERBOSE" ] || [ $VERBOSE -lt 2 ]; then
+        tempfile=`mktemp -q --tmpdir ni-py.$name.$(date +"%y%m%d%H%M").XXXX`
+        "$@" >$tempfile 2>&1 \
+        	&& { echo -e "\tdone"; rm -f $tempfile; } \
+        	|| { echo -en "\tfailed. ";
+    			 [ -z "$VERBOSE" ] \
+    				 && echo "See $tempfile" \
+    				 || { echo "Details from $tempfile:"; cat $tempfile; }; }
+	else
+	    echo
+	    "$@"
+	fi
 else
     echo -e "\tDRY: $*"
 fi
