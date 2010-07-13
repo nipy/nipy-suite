@@ -54,6 +54,12 @@ status:
 	: I: Submodules
 	git submodule status
 
+describe:
+	: I: Main module version:
+	@git describe
+	: I: Dependent modules
+	@git submodule foreach 'git describe || :'
+
 # Invoke ipython in current "environment"
 ipython:
 	ipython
