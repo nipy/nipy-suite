@@ -28,8 +28,15 @@ install-%:
 
 test-%:
 # To make sure things up-to-date
+	@[ -z $$VERBOSE ] ||  echo "PYTHONPATH=$$PYTHONPATH"
 	@$(RUN) "Assuring uptodate install of $*" $(MAKE) install-$*
-	@$(RUN) "Testing $*" nosetests -q $*
+	@cd $(INSTALLDIR) && $(RUN) "Testing $*" nosetests -q $*
+
+# Dependencies:
+install-nipy: install-nibabel
+install-dipy: install-nibabel install-nipy
+install-nitime: install-nipy
+install-xipy: install-nipy install-dipy
 
 # Shortcuts
 clean: all-clean
