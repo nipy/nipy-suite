@@ -64,7 +64,8 @@ test: all-test
 # To oversee repositories
 status:
 	@echo I: Current repository
-	git status
+	@git describe
+	@git status
 	@echo I: Submodules
 	git submodule status
 
