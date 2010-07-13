@@ -33,6 +33,8 @@ test-%:
 
 # Shortcuts
 clean: all-clean
+	# nipy(?) leaves things behind
+	-rm failed.nii.gz
 	# nitime and xipy still have build
 	rm -rf $(foreach prj, $(PROJECTS), $(prj)/build)
 	# DiPy doesn't remove generated .c files upon clean
