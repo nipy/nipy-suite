@@ -3,17 +3,21 @@
 # Little helper which spits out output only if there was an error
 # while running the desired command.  First argument taken as the
 # message prefix
-
-echo -n "$1"
+msg="$1"
+name=$(echo "$msg" | tr ' ' '_')
+[ -z "$VERBOSE" ] || echo "-------------------------------------------"
+echo -n " I: $1"
 shift
 
 if [ -z "$DRY" ]
 then
-    tempfile=`mktemp --tmpdir ni-py.XXXXXX`
-    "$@" >tempfile 2>&1 \
-    	&& { echo -e "\tok"; rm -f $tempfile; } \
-    	|| { echo -e "\tfailed. See $tempfile"; }
-    rm -f tempfile
+    tempfile=`mktemp -q --tmpdir ni-py.$name.$(date +"%y%m%d%H%M").XXXX`
+    "$@" >$tempfile 2>&1 \
+    	&& { echo -e "\tdone"; rm -f $tempfile; } \
+    	|| { echo -en "\tfailed. ";
+			 [ -z "$VERBOSE" ] \
+				 && echo "See $tempfile" \
+				 || { echo "Details from $tempfile:"; cat $tempfile; }; }
 else
     echo -e "\tDRY: $*"
 fi
