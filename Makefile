@@ -79,6 +79,10 @@ reset-to-suite:
 	@echo "I: Resetting all submodules to suite's versions"
 	@git submodule foreach 'git checkout master && git reset --hard $$sha1'
 
+pull:
+	@echo I: Fetching and pulling the master branches
+	@git submodule foreach 'git checkout master && git pull'
+
 # Invoke ipython in current "environment"
 ipython:
 	ipython
