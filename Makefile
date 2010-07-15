@@ -42,7 +42,7 @@ test-%:
 # Dependencies:
 install-nipy: install-nibabel
 install-dipy: install-nibabel install-nipy
-install-nitime: install-nipy
+install-nitime: install-nibabel
 install-xipy: install-nipy install-dipy
 
 # Shortcuts
