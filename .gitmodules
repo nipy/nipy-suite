@@ -1,6 +1,6 @@
 [submodule "nibabel"]
 	path = nibabel
-	url = git://github.com/hanke/nibabel.git
+	url = git://github.com/nipy/nibabel.git
 [submodule "nipy"]
 	path = nipy
 	url = git://github.com/nipy/nipy.git

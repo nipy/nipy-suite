@@ -1,4 +1,4 @@
-REPOS := hanke/nibabel.git nipy/nipy.git fperez/nitime.git Garyfallidis/dipy.git miketrumpis/xipy.git
+REPOS := nipy/nibabel.git nipy/nipy.git fperez/nitime.git Garyfallidis/dipy.git miketrumpis/xipy.git
 PROJECTS := $(shell echo $(REPOS) | sed -e 's,\S*/\(\S*\).git,\1,g')
 
 PYTHON ?= python
@@ -82,6 +82,10 @@ reset-to-suite:
 pull:
 	@echo I: Fetching and pulling the master branches
 	@git submodule foreach 'git checkout master && git pull'
+
+each-%:
+	@echo I: Running git $% foreach submodule
+	git submodule foreach git $*
 
 # Invoke ipython in current "environment"
 ipython:
