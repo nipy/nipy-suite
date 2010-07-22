@@ -31,7 +31,7 @@ repository*)
 
 ::
 
- git clone http://github.com/yarikoptic/nipy-suite
+ git clone http://github.com/nipy/nipy-suite
  cd nipy-suite
  git submodule init
  git submodule update
@@ -45,6 +45,8 @@ Currently all interactions are coded via Makefile rules.  For
 additional verbose output, please add ``VERBOSE=1`` to the cmdline
 arguments to make. Following targets are of common use
 
+all (Default)
+  Runs `install` and `test` targets
 install
   Installs all modules under `install/`
 test
