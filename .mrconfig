@@ -1,0 +1,58 @@
+[DEFAULT]
+lib =
+    export NIPY=git://github.com/nipy
+    git_assure_remote() {
+        remote="$1"
+        url="$2"
+        git remote | grep -q "^$remote$" || {
+            echo I: Adding remote $remote
+            git remote add "$remote" "$url"
+            git fetch "$remote"
+        }
+    }
+    git_assure_gh_clones() {
+        # Since all clones on github are uniformly organized
+        # we can shortcut it
+        project=$1
+        shift
+        for login in $*; do
+            git_assure_remote $login git://github.com/$login/$project.git
+        done
+    }
+    git_fetch_all() {
+        # Refactored from "git fa" alias
+        git remote | while read REMOTE; do
+            echo I: Fetching from $REMOTE
+            git fetch $REMOTE || echo "FAILED"
+        done
+        [ -d .git/svn ] && {
+            echo I: Fetching from SVN
+            git svn fetch || echo "FAILED"
+            } || :
+        [ -d .git/sd ] && {
+            echo I: Fetching bugs into sd
+            git-sd pull --all || echo "FAILED"
+            } || :
+    }
+git_update = git_fetch_all
+
+[nibabel]
+checkout = git clone "${NIPY}/nibabel.git"
+update =
+       git_fetch_all
+       git_assure_gh_clones nibabel hanke matthew-brett
+
+[nipy]
+checkout = git clone "${NIPY}/nipy.git"
+update =
+       git_fetch_all
+       git_assure_gh_clones nipy alexis-roche neurospin matthew-brett
+
+[dipy]
+checkout = git clone git://github.com/Garyfallidis/dipy.git
+
+[nitime]
+checkout = git clone git://github.com/fperez/nitime.git
+
+[xipy]
+checkout = git clone git://github.com/miketrumpis/xipy.git
