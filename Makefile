@@ -6,10 +6,12 @@ INSTALLDIR=$(CURDIR)/install
 
 RUN=$(CURDIR)/bin/runc
 export DRY VERBOSE
-# TODO: python version and installation path
-PYTHONPATH := $(PYTHONPATH):$(INSTALLDIR)/lib/python2.6/site-packages/
-export PYTHONPATH
 
+PYTHONVERSION := $(shell $(PYTHON) --version 2>&1 | sed -e 's/\S* \([0-9]*\.[0-9]*\)[.ab].*/\1/g')
+# TODO: installation path
+PYTHONINSTALLPATH := $(INSTALLDIR)/lib/python$(PYTHONVERSION)/site-packages/
+PYTHONPATH := $(PYTHONPATH):$(PYTHONINSTALLPATH)
+export PYTHONPATH
 
 ifndef VERBOSE
 NOSEARGS=-q
@@ -21,7 +23,7 @@ all: install test
 
 all-%:
 	@echo I: $* all subprojects
-	@$(MAKE) $(foreach prj, $(PROJECTS), $*-$(prj))
+	@$(MAKE) -k $(foreach prj, $(PROJECTS), $*-$(prj))
 
 # Rules for specific actions
 clean-%:
@@ -43,8 +45,10 @@ testinstall-%: install-%
 # To check either all python code is installed
 # TODO: make compatible with any Python... too late now -- just testing
 	@cd $*/$*; find -iname \*.py | grep -v build/| sort >| /tmp/1.txt
-	@cd install/lib/python2.6/site-packages/$*; find . -iname \*.py | sort >| /tmp/2.txt
-	@diff /tmp/1.txt /tmp/2.txt | grep '^[><]'
+	@cd $(PYTHONINSTALLPATH)/$*; find . -iname \*.py | sort >| /tmp/2.txt
+	@echo " I: testinstall $*"
+	@diff /tmp/1.txt /tmp/2.txt | grep -v '__config__.py' \
+	| { grep '^[><]' && exit 2 || :; }
 
 # Dependencies:
 install-nipy: install-nibabel
