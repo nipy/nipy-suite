@@ -2,6 +2,7 @@ REPOS := nipy/nibabel.git nipy/nipy.git nipy/nitime.git Garyfallidis/dipy.git mi
 PROJECTS := $(shell echo $(REPOS) | sed -e 's,\S*/\(\S*\).git,\1,g')
 
 PYTHON ?= python
+INDENT := | sed -e "s/^/\t/g"
 INSTALLDIR=$(CURDIR)/install
 
 RUN=$(CURDIR)/bin/runc
@@ -76,16 +77,16 @@ testinstall: all-testinstall
 # To oversee repositories
 status:
 	@echo I: Current repository
-	@git describe
-	@git status
+	@git describe $(INDENT)
+	@git status $(INDENT)
 	@echo I: Submodules
-	git submodule status
+	@git submodule status $(INDENT)
 
 describe:
 	@echo I: Main module version:
-	@git describe
+	@git describe $(INDENT)
 	@echo I: Dependent modules
-	@git submodule foreach 'git describe || :'
+	@git submodule foreach '{ git describe 2>/dev/null || git show-ref --abbrev HEAD; } $(INDENT)'
 
 reset-to-suite:
 	@echo "I: Resetting all submodules to suite's versions"
