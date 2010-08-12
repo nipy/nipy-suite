@@ -35,6 +35,7 @@ lib =
             } || :
     }
 git_update = git_fetch_all
+git_wtf = echo =============================; git wtf -s
 
 [nibabel]
 checkout = git clone "${NIPY}/nibabel.git"
@@ -52,7 +53,10 @@ update =
 checkout = git clone git://github.com/Garyfallidis/dipy.git
 
 [nitime]
-checkout = git clone git://github.com/fperez/nitime.git
+checkout = git clone "${NIPY}/nitime.git"
+update =
+       git_fetch_all
+       git_assure_gh_clones nitime fperez
 
 [xipy]
 checkout = git clone git://github.com/miketrumpis/xipy.git

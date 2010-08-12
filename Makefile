@@ -1,4 +1,4 @@
-REPOS := nipy/nibabel.git nipy/nipy.git fperez/nitime.git Garyfallidis/dipy.git miketrumpis/xipy.git
+REPOS := nipy/nibabel.git nipy/nipy.git nipy/nitime.git Garyfallidis/dipy.git miketrumpis/xipy.git
 PROJECTS := $(shell echo $(REPOS) | sed -e 's,\S*/\(\S*\).git,\1,g')
 
 PYTHON ?= python
