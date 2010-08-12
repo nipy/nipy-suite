@@ -36,7 +36,7 @@ build-%:
 install-%:
 	@cd $*; $(RUN) "install $*" $(PYTHON) setup.py install --prefix=$(INSTALLDIR)
 
-test-%:
+unittest-%:
 # To make sure things up-to-date
 	@[ -z $$VERBOSE ] ||  echo "PYTHONPATH=$$PYTHONPATH"
 	@$(RUN) "Assuring uptodate install of $*" $(MAKE) install-$*
@@ -50,6 +50,9 @@ testinstall-%: install-%
 	@echo " I: testinstall $*"
 	@diff /tmp/1.txt /tmp/2.txt | grep -v '__config__.py' \
 	| { grep '^[><]' && exit 2 || :; }
+
+test-%: unittest-% testinstall-%
+	:
 
 # Dependencies:
 install-nipy: install-nibabel
@@ -72,6 +75,7 @@ dist-clean: clean
 build: all-build
 install: all-install
 test: all-test
+unittest: all-unittest
 testinstall: all-testinstall
 
 # To oversee repositories
