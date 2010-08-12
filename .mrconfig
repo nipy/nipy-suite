@@ -60,3 +60,9 @@ update =
 
 [xipy]
 checkout = git clone git://github.com/miketrumpis/xipy.git
+
+[nipype]
+checkout = git clone "${NIPY}/nipype.git"
+update =
+       git_fetch_all
+       git_assure_gh_clones nipype satra chrisfilo cindeem

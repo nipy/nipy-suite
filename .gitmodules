@@ -13,3 +13,6 @@
 [submodule "xipy"]
 	path = xipy
 	url = git://github.com/miketrumpis/xipy.git
+[submodule "nipype"]
+	path = nipype
+	url = git://github.com/nipy/nipype.git

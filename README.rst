@@ -12,6 +12,8 @@ the moment that includes:
    I/O for common neuroimaging file formats
  NiPy
    analysis of structural and functional neuroimaging data
+ NiPype
+   data analysis pipelines
  NiTime
    time series analysis
  DiPy
@@ -52,6 +54,8 @@ install
 test
   Installs all modules and runs their unittests reporting success of
   failure
+testinstall
+  Installs all modules and checks either all .py files get installed
 clean
   Cleans results of builds, `install/` is preserved
 dist-clean
