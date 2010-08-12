@@ -56,7 +56,7 @@ checkout = git clone git://github.com/Garyfallidis/dipy.git
 checkout = git clone "${NIPY}/nitime.git"
 update =
        git_fetch_all
-       git_assure_gh_clones nitime fperez
+       git_assure_gh_clones nitime fperez arokem
 
 [xipy]
 checkout = git clone git://github.com/miketrumpis/xipy.git
