@@ -36,7 +36,7 @@ build-%:
 install-%:
 	@cd $*; $(RUN) "install $*" $(PYTHON) setup.py install --prefix=$(INSTALLDIR)
 
-unittest-%:
+unittest-%: cleaninstall-%
 # To make sure things up-to-date
 	@[ -z $$VERBOSE ] ||  echo "PYTHONPATH=$$PYTHONPATH"
 	@$(RUN) "Assuring uptodate install of $*" $(MAKE) install-$*
@@ -68,6 +68,9 @@ clean: all-clean
 	rm -rf $(foreach prj, $(PROJECTS), $(prj)/build)
 	# DiPy doesn't remove generated .c files upon clean
 	find dipy -iname *.c -delete
+
+cleaninstall-%:
+	rm -rf $(PYTHONINSTALLPATH)/$**
 
 dist-clean: clean
 	rm -rf install
