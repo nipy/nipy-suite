@@ -39,6 +39,13 @@ test-%:
 	@$(RUN) "Assuring uptodate install of $*" $(MAKE) install-$*
 	@cd $(INSTALLDIR) && $(RUN) "Testing $*" nosetests $(NOSEARGS) $*
 
+testinstall-%: install-%
+# To check either all python code is installed
+# TODO: make compatible with any Python... too late now -- just testing
+	@cd $*/$*; find -iname \*.py | grep -v build/| sort >| /tmp/1.txt
+	@cd install/lib/python2.6/site-packages/$*; find . -iname \*.py | sort >| /tmp/2.txt
+	@diff /tmp/1.txt /tmp/2.txt | grep '^[><]'
+
 # Dependencies:
 install-nipy: install-nibabel
 install-dipy: install-nibabel install-nipy
@@ -60,6 +67,7 @@ dist-clean: clean
 build: all-build
 install: all-install
 test: all-test
+testinstall: all-testinstall
 
 # To oversee repositories
 status:
