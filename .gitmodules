@@ -6,7 +6,7 @@
 	url = git://github.com/nipy/nipy.git
 [submodule "nitime"]
 	path = nitime
-	url = git://github.com/fperez/nitime.git
+	url = git://github.com/nipy/nitime.git
 [submodule "dipy"]
 	path = dipy
 	url = git://github.com/Garyfallidis/dipy.git
