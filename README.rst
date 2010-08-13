@@ -26,18 +26,32 @@ the moment that includes:
 Setup
 =====
 
-Every Ni*/*Py subproject is a git submodule, so after cloning
+Every Ni*Py subproject is a git submodule, so after cloning
 nipy-suite repository, use `git submodule` to fetch actual projects'
 repositories (at the moment only from the respective *master
 repository*)
 
 ::
 
- git clone http://github.com/nipy/nipy-suite
+ git clone git://github.com/nipy/nipy-suite.git
  cd nipy-suite
  git submodule init
  git submodule update
 
+That would assure that you have main repositories available and checked out
+for your local nipy-suite collection.  If you want to track all of them and
+have additional clones (from developers) be added, it is recommended to make
+use of mr_.  If you have it available just run::
+
+  mr -c .mrconfig -t -j update
+
+To get additional remotes pointing to developer's clones added, and fresh
+changes fetched.  `-j` runs all operations in parallel to speed up fetching.
+`-c .mrconfig -t` is necessary until you incorporate your local nipy-suite
+into your global mr_ configuration.  See `nipy-devel post`_ for more details.
+
+.. _mr: http://kitenet.net/~joey/code/mr/
+.. _nipy-devel post: http://mail.scipy.org/pipermail/nipy-devel/2010-July/004344.html
 
 ============
 COMMAND LINE
@@ -77,10 +91,12 @@ Plenty:
   use nibabel from the module (not from the copy)
 
 * extend testing to
+
   - doctests
   - representative examples/demos which could be ran non-interactively
 
 * possibly provide interfacing to github:
+
   - automatically populate git configs of subprojects with remotes
     for everyone in the network (with RW to the owner's clone if he has
     one)
