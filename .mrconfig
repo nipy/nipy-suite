@@ -47,7 +47,7 @@ update =
 checkout = git clone "${NIPY}/nipy.git"
 update =
        git_fetch_all
-       git_assure_gh_clones nipy alexis-roche neurospin matthew-brett
+       git_assure_gh_clones nipy alexis-roche neurospin matthew-brett GaelVaroquaux
 
 [dipy]
 checkout = git clone git://github.com/Garyfallidis/dipy.git
