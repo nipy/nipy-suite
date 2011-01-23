@@ -16,3 +16,6 @@
 [submodule "nipype"]
 	path = nipype
 	url = git://github.com/nipy/nipype.git
+[submodule "pbrain"]
+	path = pbrain
+	url = https://github.com/nipy/pbrain
