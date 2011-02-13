@@ -56,7 +56,7 @@ test-%: unittest-% testinstall-%
 
 # Dependencies:
 install-nipy: install-nibabel
-install-dipy: install-nibabel install-nipy
+install-dipy: install-nibabel
 install-nitime: install-nibabel
 install-xipy: install-nipy install-dipy
 
