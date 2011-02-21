@@ -16,7 +16,7 @@ Depends: ${misc:Depends},
          python-nibabel (>= 1.0.0),
          python-nipy (>= 0.1.2+20110114),
          python-dipy (>= 0.5.0),
-         python-nipype (>= 0.3.4),
+         python-nipype (>= 0.3.3),
          python-nitime (>= 0.2)
 Suggests: python-mvpa,
           psychopy
@@ -38,7 +38,7 @@ Depends: ${misc:Depends},
          python-nibabel-doc (>= 1.0.0),
          python-nipy-doc (>= 0.1.2+20110114),
          python-dipy-doc (>= 0.5.0),
-         python-nipype-doc (>= 0.3.4),
+         python-nipype-doc (>= 0.3.3),
          python-nitime-doc (>= 0.2)
 Suggests: python-mvpa-doc
 Description: Neuroimaging in Python -- documentation
