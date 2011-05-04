@@ -23,8 +23,9 @@ endif
 all: install test
 
 all-%:
+	@echo ===========================================
 	@echo I: $* all subprojects
-	@$(MAKE) -k $(foreach prj, $(PROJECTS), $*-$(prj))
+	@$(MAKE) -s -k $(foreach prj, $(PROJECTS), $*-$(prj))
 
 # Rules for specific actions
 clean-%:
@@ -70,10 +71,10 @@ clean: all-clean
 	find dipy -iname *.c -delete
 
 cleaninstall-%:
-	rm -rf $(PYTHONINSTALLPATH)/$**
+	@rm -rf $(PYTHONINSTALLPATH)/$**
 
 dist-clean: clean
-	rm -rf install
+	@rm -rf install
 
 build: all-build
 install: all-install
