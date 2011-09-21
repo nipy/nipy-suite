@@ -9,7 +9,7 @@
 	url = git://github.com/nipy/nitime.git
 [submodule "dipy"]
 	path = dipy
-	url = git://github.com/Garyfallidis/dipy.git
+	url = git://github.com/nipy/dipy.git
 [submodule "xipy"]
 	path = xipy
 	url = git://github.com/miketrumpis/xipy.git
