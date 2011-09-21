@@ -41,7 +41,7 @@ unittest-%: cleaninstall-%
 # To make sure things up-to-date
 	@[ -z $$VERBOSE ] ||  echo "PYTHONPATH=$$PYTHONPATH"
 	@$(RUN) "Assuring uptodate install of $*" $(MAKE) install-$*
-	@cd $(INSTALLDIR) && $(RUN) "Testing $*" nosetests $(NOSEARGS) $*
+	@cd $(INSTALLDIR) && $(RUN) "Testing $*" nosetests --with-doctest $(NOSEARGS) $*
 
 testinstall-%: install-%
 # To check either all python code is installed
