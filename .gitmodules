@@ -19,3 +19,6 @@
 [submodule "pbrain"]
 	path = pbrain
 	url = https://github.com/nipy/pbrain
+[submodule "nibotmi"]
+	path = nibotmi
+	url = git://github.com/nipy/nibotmi.git
