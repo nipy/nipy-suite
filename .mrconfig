@@ -69,3 +69,6 @@ update =
 
 [pbrain]
 checkout = git clone "${NIPY}/pbrain.git"
+
+[nibotmi]
+checkout = git clone "${NIPY}/nibotmi.git"
