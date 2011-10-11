@@ -17,7 +17,8 @@ Depends: ${misc:Depends},
          python-nipy (>= 0.1.2+20110114),
          python-dipy (>= 0.5.0),
          python-nipype (>= 0.3.3),
-         python-nitime (>= 0.2)
+         python-nitime (>= 0.2),
+         python-surfer (>= 0.1+git21~),
 Suggests: python-mvpa,
           psychopy
 Description: Neuroimaging in Python
