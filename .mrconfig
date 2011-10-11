@@ -59,7 +59,7 @@ checkout = git clone git://github.com/nipy/dipy.git
 checkout = git clone "${NIPY}/nitime.git"
 update =
        git_fetch_all
-       git_assure_gh_clones nitime fperez arokem yarikoptic neurodebian
+       git_assure_gh_clones nitime fperez arokem yarikoptic neurodebian ivanov
 
 [xipy]
 checkout = git clone git://github.com/miketrumpis/xipy.git
@@ -75,3 +75,8 @@ checkout = git clone "${NIPY}/pbrain.git"
 
 [nibotmi]
 checkout = git clone "${NIPY}/nibotmi.git"
+
+[pysurfer]
+checkout = git clone "${NIPY}/PySurfer.git" pysurfer
+update = git_fetch_all
+       	 git_assure_gh_clones agramfort

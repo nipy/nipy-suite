@@ -22,3 +22,6 @@
 [submodule "nibotmi"]
 	path = nibotmi
 	url = git://github.com/nipy/nibotmi.git
+[submodule "pysurfer"]
+	path = pysurfer
+	url = git://github.com/neurodebian/PySurfer.git
