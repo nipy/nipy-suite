@@ -37,11 +37,16 @@ build-%:
 install-%:
 	@cd $*; $(RUN) "install $*" $(PYTHON) setup.py install --prefix=$(INSTALLDIR)
 
+# by default use plain nosetools
+TESTER=nosetools
 unittest-%: cleaninstall-%
 # To make sure things up-to-date
 	@[ -z $$VERBOSE ] ||  echo "PYTHONPATH=$$PYTHONPATH"
 	@$(RUN) "Assuring uptodate install of $*" $(MAKE) install-$*
-	@cd $(INSTALLDIR) && $(RUN) "Testing $*" nosetests --with-doctest $(NOSEARGS) $*
+	@cd $(INSTALLDIR) && $(RUN) "Testing $*" $(TESTER) --with-doctest $(NOSEARGS) $*
+
+# but NiPy is special and has its own ;)
+unittest-nipy: TESTER=$(CURDIR)/nipy/tools/nipnost
 
 testinstall-%: install-%
 # To check either all python code is installed
@@ -64,7 +69,7 @@ install-xipy: install-nipy install-dipy
 # Shortcuts
 clean: all-clean
 	# nipy(?) leaves things behind
-	-rm failed.nii.gz
+	rm -f failed.nii.gz
 	# nitime and xipy still have build
 	rm -rf $(foreach prj, $(PROJECTS), $(prj)/build)
 	# DiPy doesn't remove generated .c files upon clean
