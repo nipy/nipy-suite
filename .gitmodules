@@ -25,3 +25,6 @@
 [submodule "pysurfer"]
 	path = pysurfer
 	url = git://github.com/neurodebian/PySurfer.git
+[submodule "nipy-notebooks"]
+	path = nipy-notebooks
+	url = git://github.com/fperez/nipy-notebooks.git

@@ -80,3 +80,6 @@ checkout = git clone "${NIPY}/nibotmi.git"
 checkout = git clone "${NIPY}/PySurfer.git" pysurfer
 update = git_fetch_all
        	 git_assure_gh_clones agramfort
+
+[nipy-notebooks]
+checkout = git clone "git://github.com/fperez/nipy-notebooks" nipy-notebooks
