@@ -38,7 +38,7 @@ install-%:
 	@cd $*; $(RUN) "install $*" $(PYTHON) setup.py install --prefix=$(INSTALLDIR)
 
 # by default use plain nosetools
-TESTER=nosetools
+TESTER=nosetests
 unittest-%: cleaninstall-%
 # To make sure things up-to-date
 	@[ -z $$VERBOSE ] ||  echo "PYTHONPATH=$$PYTHONPATH"
