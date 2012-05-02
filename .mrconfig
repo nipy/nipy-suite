@@ -79,7 +79,11 @@ checkout = git clone "${NIPY}/nibotmi.git"
 [pysurfer]
 checkout = git clone "${NIPY}/PySurfer.git" pysurfer
 update = git_fetch_all
-       	 git_assure_gh_clones agramfort
+         git_assure_gh_clones agramfort
 
+# Misc additional projects
 [nipy-notebooks]
 checkout = git clone "git://github.com/fperez/nipy-notebooks" nipy-notebooks
+
+[nipy-artwork]
+checkout = git clone "${NIPY}/nipy-artwork.git" nipy-artwork
